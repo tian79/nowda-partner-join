@@ -1,0 +1,12 @@
+# 공개 저장소에는 페이지에 필요한 파일만 올립니다
+/*
+!/.gitignore
+!/index.html
+!/favicon.svg
+!/share.jpg
+!/README.md
+!/downloads/
+!/assets/
+/assets/*
+!/assets/nowda/
+.DS_Store
