@@ -377,6 +377,18 @@ p{margin:0}
 .foot__brand{display:flex;align-items:center;gap:14px}
 .foot__brand img{width:44px;height:44px}
 .foot a{color:#fffdf7}
+/* copy-to-clipboard */
+button.btn{border:0;font-family:inherit;cursor:pointer}
+button.mail{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:0;color:var(--ink);font-family:inherit;cursor:pointer;text-align:left}
+button.mail svg{width:24px;height:24px;flex:none;color:var(--muted);transition:color .2s}
+button.mail:hover svg{color:var(--green-deep)}
+.toast{position:fixed;left:50%;bottom:28px;z-index:60;width:min(440px,calc(100% - 32px));transform:translate(-50%,16px);opacity:0;pointer-events:none;background:var(--ink);color:var(--paper);border-radius:18px;padding:16px 20px 16px 56px;box-shadow:0 18px 40px -16px rgba(46,43,39,.6);transition:opacity .3s var(--ease),transform .4s var(--ease)}
+.toast.is-on{opacity:1;transform:translate(-50%,0)}
+.toast::before{content:"";position:absolute;left:18px;top:18px;width:24px;height:24px;border-radius:50%;background:var(--yellow) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.3l3 3 6-6.3' fill='none' stroke='%232e2b27' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/100% no-repeat}
+.toast.is-error::before{background:var(--red)}
+.toast b{display:block;font-size:17px;font-weight:800;margin-bottom:2px}
+.toast span{font-size:15px;color:#d9d2c4}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
 </head>
@@ -397,7 +409,7 @@ p{margin:0}
       <a href="#who">모집 대상</a>
       <a href="#join">참여 방법</a>
     </nav>
-    <a class="btn btn--ink" href="#join">제휴 신청</a>
+    <a class="btn btn--ink" href="#join" data-copy-email>제휴 신청</a>
   </div>
 </header>
 
@@ -752,7 +764,7 @@ p{margin:0}
       <div>
         <h2 id="join-h">참여는 서식 한 장과 메일 한 통</h2>
         <p class="lead" style="margin-top:18px">서식과 서류를 아래 주소로 보내 주시면, 검토한 뒤 보내신 주소로 결과를 알려 드립니다.</p>
-        <p class="mail">nowda@ijto.or.kr</p>
+        <button type="button" class="mail" data-copy-email aria-label="메일 주소 nowda@ijto.or.kr 복사">nowda@ijto.or.kr<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 3.5V3a1.5 1.5 0 0 0-1.5-1.5h-6A1.5 1.5 0 0 0 2 3v6a1.5 1.5 0 0 0 1.5 1.5H4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
         <ol class="steps">
           <li><b>서식 작성</b><span>업종, 업체명, 주소, 소개, 운영시간, 제공할 혜택</span></li>
           <li><b>서류 첨부</b><span>사업자등록증 사본, 매장 사진 2~3장(한 장에 10MB까지)</span></li>
@@ -764,7 +776,7 @@ p{margin:0}
           <!-- 한글 서식: downloads/nowda-partner-form.hwpx 를 만든 뒤 아래 줄의 주석을 푸세요
           <a class="dl" href="downloads/nowda-partner-form.hwpx" download>한글 서식 받기</a> -->
         </div>
-        <div class="btn-row" style="margin-top:28px"><a class="btn btn--ink" href="mailto:nowda@ijto.or.kr?subject=%EB%82%98%EC%9A%B0%EB%8B%A4%20%EC%A0%9C%ED%9C%B4%20%EC%8B%A0%EC%B2%AD%20-%20">신청 메일 쓰기<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+        <div class="btn-row" style="margin-top:28px;align-items:center"><button type="button" class="btn btn--ink" data-copy-email>신청하기<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5" y="5" width="9" height="9" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 3.5V3a1.5 1.5 0 0 0-1.5-1.5h-6A1.5 1.5 0 0 0 2 3v6a1.5 1.5 0 0 0 1.5 1.5H4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button><span class="note">누르면 메일 주소가 복사됩니다.</span></div>
       </div>
       <div class="faq">
         <h3>신청 전에 많이 묻는 질문</h3>
@@ -783,10 +795,10 @@ p{margin:0}
     <div class="wrap close__inner">
       <h2 id="close-h">제주야, 나 왔어!<br>그 인사를 사장님 매장에서</h2>
       <p class="lead">나우다 제휴사가 되어 다시 찾아오는 여행자를 함께 맞아 주세요.</p>
-      <a class="btn btn--ink" href="#join">제휴 신청하기<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn--ink" href="#join" data-copy-email>제휴 신청하기<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <div class="contact">
         <a href="tel:064-740-6078"><span>제휴 문의 전화</span><strong>064-740-6078</strong></a>
-        <a href="mailto:nowda@ijto.or.kr"><span>이메일</span><strong>nowda@ijto.or.kr</strong></a>
+        <a href="mailto:nowda@ijto.or.kr" data-copy-email><span>이메일 (누르면 복사)</span><strong>nowda@ijto.or.kr</strong></a>
       </div>
     </div>
     <div class="close__ground" aria-hidden="true">
@@ -811,6 +823,38 @@ p{margin:0}
   var top=document.querySelector('.top');
   function onScroll(){top.classList.toggle('is-scrolled',window.scrollY>8)}
   window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+})();
+</script>
+<div class="toast" id="toast" role="status" aria-live="polite"><b></b><span></span></div>
+<script>
+(function(){
+  var EMAIL='nowda@ijto.or.kr', toast=document.getElementById('toast'), timer;
+  function show(title,body,err){
+    toast.querySelector('b').textContent=title;
+    toast.querySelector('span').textContent=body;
+    toast.classList.toggle('is-error',!!err);
+    toast.classList.add('is-on');
+    clearTimeout(timer);timer=setTimeout(function(){toast.classList.remove('is-on')},4500);
+  }
+  function fallback(){
+    var t=document.createElement('textarea');t.value=EMAIL;t.setAttribute('readonly','');
+    t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();
+    var ok=false;try{ok=document.execCommand('copy')}catch(e){}
+    document.body.removeChild(t);return ok;
+  }
+  function done(ok){
+    if(ok) show('E-mail 주소가 복사되었습니다','신청서, 자료와 함께 '+EMAIL+'로 제출해 주세요.');
+    else show('메일 주소를 복사하지 못했습니다',EMAIL+'로 신청서와 자료를 보내 주세요.',true);
+  }
+  document.querySelectorAll('[data-copy-email]').forEach(function(el){
+    el.addEventListener('click',function(e){
+      var href=el.getAttribute('href')||'';
+      if(href.indexOf('mailto:')===0) e.preventDefault();
+      if(navigator.clipboard&&window.isSecureContext){
+        navigator.clipboard.writeText(EMAIL).then(function(){done(true)},function(){done(fallback())});
+      } else done(fallback());
+    });
+  });
 })();
 </script>
 </body>
